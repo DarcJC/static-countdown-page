@@ -40,7 +40,7 @@ document.addEventListener('readystatechange', (event) => {
 
         setInterval(() => {
             let res = Math.round((_page_data["date"] - new Date()) / 1000);
-            _page_data["countdown_text"] = `${Math.round(3600 / 24 / res)} 天 ${Math.round(res / 3600 % 24)} 时 ${Math.round(res / 60 % 60)} 分 ${Math.round(res % 60)} 秒`;
+            _page_data["countdown_text"] = `${Math.round(res / 3600 / 24 )} 天 ${Math.round(res / 3600 % 24)} 时 ${Math.round(res / 60 % 60)} 分 ${Math.round(res % 60)} 秒`;
             document.getElementById("countdown_text").innerText = _page_data["countdown_text"];
         }, 1000);
 
