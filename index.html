@@ -9,7 +9,7 @@
 <script src="assets/background.js" type="text/javascript"></script>
 <div id="main_box">
     <script id="main_content" type="text/html">
-        <title>{{ title }}</title>
+        <title id="title">{{ title }}</title>
         <div role="banner" id="background" class="background_container"></div>
         <div role="main" id="main">
             <div class="top">
@@ -17,9 +17,9 @@
                 <a href="https://github.com/DarcJC" style="font-size: 1em">Github</a>
             </div>
             <div class="center">
-                <div style="font-size: 4em">{{ header_text }}</div>
+                <div style="font-size: 4em" id="header_text">{{ header_text }}</div>
                 <br/>
-                <div style="font-size: 1.5em">{{ small_text }}</div>
+                <div style="font-size: 1.5em" id="small_text">{{ small_text }}</div>
                 <br/>
                 <br/>
                 <div style="font-size: 3em" id="countdown_text">{{ countdown_text }}</div>
