@@ -2,12 +2,28 @@
 
 function parseDate(date_text) {
     const d = new Date(date_text);
-    if (d.getFullYear() === new Date("1/1").getUTCFullYear()) {
+    if (d.getFullYear() === new Date("1/1").getFullYear()) {
         d.setFullYear(new Date().getFullYear());
+        if (d - new Date()  < 1000 * 60) d.setFullYear(new Date().getFullYear() + 1)
     }
-    if (d - new Date()  < 1000 * 60) d.setFullYear(new Date().getFullYear());
-    if (d - new Date()  < 1000 * 60) d.setFullYear(new Date().getFullYear() + 1)
     return d;
+}
+
+const animateCSS = (element, animation, prefix = 'animate__') => {
+    return new Promise((resolve, reject) => {
+        const animationName = `${prefix}${animation}`;
+        const node = document.querySelector(element);
+
+        node.classList.add(`${prefix}animated`, animationName);
+
+        // When the animation ends, we clean the classes and resolve the Promise
+        function handleAnimationEnd() {
+            node.classList.remove(`${prefix}animated`, animationName);
+            resolve('Animation ended');
+        }
+
+        node.addEventListener('animationend', handleAnimationEnd, {once: true});
+    });
 }
 
 const _page_data = {};
@@ -42,7 +58,11 @@ document.addEventListener('readystatechange', (event) => {
         setInterval(() => {
             let res = Math.round((_page_data["date"] - new Date()) / 1000);
             _page_data["countdown_text"] = `${Math.abs(Math.round(res / 3600 / 24 ))} 天 ${Math.abs(Math.round(res / 3600 % 24))} 时 ${Math.abs(Math.round(res / 60 % 60))} 分 ${Math.abs(Math.round(res % 60))} 秒`;
-            document.getElementById("countdown_text").innerText = _page_data["countdown_text"];
+            const elem = document.getElementById("countdown_text");
+            elem.innerText = _page_data["countdown_text"];
+            setTimeout(()=>{
+                animateCSS("#countdown_text", "rubberBand").then(console.log);
+            });
         }, 1000);
 
         setInterval(() => {

@@ -80,3 +80,19 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+#header_text {
+    font-size: 4em;
+}
+
+#small_text {
+    font-size: 1.4em;
+    font-weight: 100;
+    color: rgba(250, 235, 215, .6);
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+}
+
+#countdown_text {
+    font-size: 3em;
+}
