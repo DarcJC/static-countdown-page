@@ -46,7 +46,10 @@ const _global_background = {
             this.setBackground = (target_id) => {
                 const elem = document.getElementById(target_id);
                 if (!elem) return;
-                elem.style.cssText += `background: url("${this.origin_type}") fixed;`;
+                elem.style.cssText += `background: url("${this.origin_type}") fixed no-repeat center center; background-color:#CCCCCC;`;
+                elem.style.cssText += "filter:\"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')\";" +
+                    "-moz-background-size:100% 100%;" +
+                    "background-size:100% 100%;"
                 if (this.blur && this.grayscale) {
                     elem.style.cssText += `filter: blur(${this.blur}px) grayscale(100%);`;
                     elem.classList.add("gray");
