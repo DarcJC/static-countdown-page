@@ -5,7 +5,8 @@ function parseDate(date_text) {
     if (d.getFullYear() === new Date("1/1").getUTCFullYear()) {
         d.setFullYear(new Date().getFullYear());
     }
-    if (new Date() - d > 1000 * 60 * 60) d.setFullYear(new Date().getFullYear() + 1);
+    if (d - new Date()  < 1000 * 60) d.setFullYear(new Date().getFullYear());
+    if (d - new Date()  < 1000 * 60) d.setFullYear(new Date().getFullYear() + 1)
     return d;
 }
 
@@ -40,7 +41,7 @@ document.addEventListener('readystatechange', (event) => {
 
         setInterval(() => {
             let res = Math.round((_page_data["date"] - new Date()) / 1000);
-            _page_data["countdown_text"] = `${Math.round(res / 3600 / 24 )} 天 ${Math.round(res / 3600 % 24)} 时 ${Math.round(res / 60 % 60)} 分 ${Math.round(res % 60)} 秒`;
+            _page_data["countdown_text"] = `${Math.abs(Math.round(res / 3600 / 24 ))} 天 ${Math.abs(Math.round(res / 3600 % 24))} 时 ${Math.abs(Math.round(res / 60 % 60))} 分 ${Math.abs(Math.round(res % 60))} 秒`;
             document.getElementById("countdown_text").innerText = _page_data["countdown_text"];
         }, 1000);
 
